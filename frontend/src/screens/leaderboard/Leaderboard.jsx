@@ -1,11 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const Leaderboard = () => {
-  return (
-    <div className='leaderboard'>
-      
-    </div>
-  )
-}
+  return <div className="leaderboard"></div>;
+};
 
-export default Leaderboard
+export default Leaderboard;

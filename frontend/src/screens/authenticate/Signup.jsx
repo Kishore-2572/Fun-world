@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Gamecard = () => {
+const Signup = () => {
   return <div></div>;
 };
 
-export default Gamecard;
+export default Signup;
