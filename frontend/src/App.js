@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from '../src/screens/home/Home';
 import Game from '../src/screens/game/Game';
 import Profile from '../src/screens/profile/Profile';
@@ -28,17 +28,23 @@ function App() {
               </div>
               <div className="nav-items">
                 <div className="nav-item">
-                  <a href="/leaderboard">Leaderboard</a>
+                  <Link to="/">Home</Link>
                 </div>
                 <div className="nav-item">
-                  {user ? (
-                    <a href={`/profile/${user._id}`}>
-                      <i className="fa-solid fa-circle-user"></i>
-                    </a>
-                  ) : (
-                    <a href="/signin">Signin</a>
-                  )}
+                  <a href="#home-games">Games</a>
                 </div>
+                <div className="nav-item">
+                  <Link to="/leaderboard">Leaderboard</Link>
+                </div>
+                <div className="nav-item">
+                  <a href="#help">Help</a>
+                </div>
+              </div>
+              <div>
+                <Link className="profile-pic" to={`/profile/${user._id}`}>
+                  <div className="profile-name">Kishore N</div>
+                  <i className="fa-solid fa-circle-user"></i>
+                </Link>
               </div>
             </nav>
           </header>
