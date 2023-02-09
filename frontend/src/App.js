@@ -31,7 +31,7 @@ function App() {
                   <Link to="/">Home</Link>
                 </div>
                 <div className="nav-item">
-                  <a href="#home-games">Games</a>
+                  <Link to="/games">Games</Link>
                 </div>
                 <div className="nav-item">
                   <Link to="/leaderboard">Leaderboard</Link>
@@ -54,7 +54,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/signin" element={<Login />} />
             <Route path="/register" element={<Signup />} />
-            <Route path="/game/:gamename" element={<Game />} />
+            <Route path="/games" element={<Game />} />
             <Route path="/profile/:profileid" element={<Profile />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
           </Routes>
