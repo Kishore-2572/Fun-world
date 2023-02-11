@@ -1,5 +1,5 @@
 .App {
-  width: 100wh;
+  width: 100%;
   height: 100vh;
 }
 
@@ -40,12 +40,12 @@
   color: black;
 }
 
-.nav-item > a:hover{
+.nav-item > a:hover {
   font-size: 1.2rem;
   font-weight: bold;
 }
 
-.profile-pic{
+.profile-pic {
   display: flex;
   justify-content: center;
   align-items: center;

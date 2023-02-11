@@ -21,10 +21,10 @@ function App() {
           <header>
             <nav className="navbar">
               <div className="nav-brand">
-                <a href="/">
+                <Link to="/">
                   {' '}
                   <img src={Logo} alt="logo" />
-                </a>
+                </Link>
               </div>
               <div className="nav-items">
                 <div className="nav-item">
