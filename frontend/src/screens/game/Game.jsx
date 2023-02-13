@@ -65,15 +65,15 @@ const Game = () => {
           <div className="game-card">
             <div className="gc-left">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8iRZ4oIbQwXol4xfDTsKGXwD_CRWJkM6V7vekNwpJXIP15VJQiS5JTHb_ZoeJkFa87QE&usqp=CAU"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKt2wtYESaUWhE3jTGm5xG5FdVWOevFQDzDA&usqp=CAU"
                 alt=""
                 srcset=""
               />
             </div>
             <div className="gc-right">
-              <h1>TYPING GAME</h1>
+              <h1>Sudoku</h1>
               <p className="description">
-                It is a Game which test your typing speed{' '}
+                A challenging game for your IQ{' '}
               </p>
               <div className="gc-gamecount">
                 <h3>Games</h3> <p>10</p>{' '}

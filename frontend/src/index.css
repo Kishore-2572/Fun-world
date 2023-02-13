@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   text-decoration: none;
@@ -7,8 +7,8 @@
   scroll-behavior: smooth;
 }
 
-::-webkit-scrollbar { 
-  display: none; 
+::-webkit-scrollbar {
+  display: none;
 }
 
 body {
