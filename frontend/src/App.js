@@ -7,8 +7,7 @@ import Leaderboard from '../src/screens/leaderboard/Leaderboard';
 import Logo from '../src/assets/logo.png';
 import { useContext } from 'react';
 import { store } from './store';
-import Login from './screens/authenticate/Login';
-import Signup from './screens/authenticate/Signup';
+import TypingSpeed from './screens/game/TypingSpeed';
 
 function App() {
   const { state, disPatch } = useContext(store);
@@ -52,11 +51,12 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/signin" element={<Login />} />
-            <Route path="/register" element={<Signup />} />
+            {/* <Route path="/signin" element={<Login />} />
+            <Route path="/register" element={<Signup />} /> */}
             <Route path="/games" element={<Game />} />
             <Route path="/profile/:profileid" element={<Profile />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/TypingSpeed" element={<TypingSpeed />} />
           </Routes>
         </main>
       </div>

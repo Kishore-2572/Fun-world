@@ -6,7 +6,7 @@ const Home = () => {
     <div className="home">
       <section className="home-header"></section>
       {/* <section id="home-games"> </section> */}
-      <section class="home-payments"> </section>
+      <section className="home-payments"> </section>
     </div>
   );
 };
