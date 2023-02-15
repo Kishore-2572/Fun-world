@@ -8,6 +8,7 @@ import Logo from '../src/assets/logo.png';
 import { useContext } from 'react';
 import { store } from './store';
 import TypingSpeed from './screens/game/TypingSpeed';
+import CandyCrush from './screens/game/CandyCrush';
 
 function App() {
   const { state, disPatch } = useContext(store);
@@ -16,6 +17,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        {' '}
         {user && (
           <header>
             <nav className="navbar">
@@ -23,43 +25,44 @@ function App() {
                 <Link to="/">
                   {' '}
                   <img src={Logo} alt="logo" />
-                </Link>
-              </div>
+                </Link>{' '}
+              </div>{' '}
               <div className="nav-items">
                 <div className="nav-item">
-                  <Link to="/">Home</Link>
-                </div>
+                  <Link to="/"> Home </Link>{' '}
+                </div>{' '}
                 <div className="nav-item">
-                  <Link to="/games">Games</Link>
-                </div>
+                  <Link to="/games"> Games </Link>{' '}
+                </div>{' '}
                 <div className="nav-item">
-                  <Link to="/leaderboard">Leaderboard</Link>
-                </div>
+                  <Link to="/leaderboard"> Leaderboard </Link>{' '}
+                </div>{' '}
                 <div className="nav-item">
-                  <a href="#help">Help</a>
-                </div>
-              </div>
+                  <a href="#help"> Help </a>{' '}
+                </div>{' '}
+              </div>{' '}
               <div>
                 <Link className="profile-pic" to={`/profile/${user._id}`}>
-                  <div className="profile-name">Kishore N</div>
-                  <i className="fa-solid fa-circle-user"></i>
-                </Link>
-              </div>
-            </nav>
+                  <div className="profile-name"> Kishore N </div>{' '}
+                  <i className="fa-solid fa-circle-user"> </i>{' '}
+                </Link>{' '}
+              </div>{' '}
+            </nav>{' '}
           </header>
-        )}
+        )}{' '}
         <main>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home />} />{' '}
             {/* <Route path="/signin" element={<Login />} />
-            <Route path="/register" element={<Signup />} /> */}
-            <Route path="/games" element={<Game />} />
-            <Route path="/profile/:profileid" element={<Profile />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
-            <Route path="/TypingSpeed" element={<TypingSpeed />} />
-          </Routes>
-        </main>
-      </div>
+                        <Route path="/register" element={<Signup />} /> */}{' '}
+            <Route path="/games" element={<Game />} />{' '}
+            <Route path="/profile/:profileid" element={<Profile />} />{' '}
+            <Route path="/leaderboard" element={<Leaderboard />} />{' '}
+            <Route path="/TypingSpeed" element={<TypingSpeed />} />{' '}
+            <Route path="/CandyCrush" element={<CandyCrush />} />{' '}
+          </Routes>{' '}
+        </main>{' '}
+      </div>{' '}
     </BrowserRouter>
   );
 }
