@@ -3,20 +3,33 @@ const User = require('../models/Usermodel');
 const Typing = require('../models/Typing');
 const Candycrush = require('../models/Candycrush');
 const Sudoku = require('../models/Sudoku');
+const generateToken = require('../Utils.js');
 
 userRouter.post('/signup', async (req, res) => {
+  console.log('inside signup backend');
   try {
     const name = req.body.name;
     const password = req.body.password;
-    const temp = await User.findOne({ name: name });
+    const email = req.body.email;
+    const temp = await User.findOne({ email: email });
     if (temp) {
       res.status(404).send('User already exists');
     } else {
-      const newUser = new User({ name: name, password: password });
+      const newUser = new User({
+        name: name,
+        password: password,
+        email: email,
+      });
       const user = await newUser.save();
-      res
-        .status(200)
-        .send({ user: user, message: 'Account created successfully' });
+      res.status(200).send({
+        user: {
+          name: user.name,
+          password: user.password,
+          email: user.email,
+          token: generateToken(user),
+        },
+        message: 'Account created successfully',
+      });
     }
   } catch (e) {
     res.status(500).send({ message: e.message });

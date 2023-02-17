@@ -10,7 +10,8 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'SIGN_IN':
+    case 'SIGN_UP':
+      // localStorage.setItem('user', JSON.stringify(action.payload));
       return { ...state, user: action.payload };
     case 'SIGN_OUT':
       return { ...state, user: null };

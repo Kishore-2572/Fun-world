@@ -58,3 +58,11 @@
   color: black;
   margin-right: 2rem;
 }
+
+.login {
+  padding: 0.8rem 2rem;
+  background-color: #000;
+  color: #fff;
+  margin-right: 2rem;
+  border-radius: 1rem;
+}

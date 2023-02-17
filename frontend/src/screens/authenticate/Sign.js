@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Sign.css';
-import axios from 'axios';
+import Axios from 'axios';
+import { store } from '../../store';
 
 function Sign() {
   const [email, setEmail] = useState('');
   const [password, setpassword] = useState('');
   const [name, setname] = useState('');
+  const { state, disPatch } = useContext(store);
+  const { user } = state;
 
   const load = () => {
     const signUpButton = document.getElementById('signUp');
@@ -21,21 +24,36 @@ function Sign() {
     });
   };
 
-  const signinHanfler = async () => {
-    const { data } = await axios.post('/signin', {
-      email,
-      password,
-    });
+  const signinHandler = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await Axios.post('/signin', {
+        email,
+        password,
+      });
+      disPatch({ type: 'SIGN_IN', payload: data });
+      window.alert('Account Logined');
+    } catch (error) {
+      window.alert('error' + error.message);
+    }
     console.log('signin');
   };
 
-  const signupHandler = async () => {
-    const { data } = await axios.post('/signup', {
-      email,
-      name,
-      password,
-    });
-    console.log('signip');
+  const signupHandler = async (event) => {
+    event.preventDefault();
+    console.log('Sigup frontend');
+    try {
+      const { data } = await Axios.post('/user/signup', {
+        email,
+        name,
+        password,
+      });
+      disPatch({ type: 'SIGN_UP', payload: data });
+      window.alert('Account created');
+    } catch (error) {
+      window.alert('error ' + error.message);
+    }
+    console.log('signup');
   };
 
   return (
@@ -87,7 +105,7 @@ function Sign() {
               type="password"
               placeholder="Password"
             />
-            <button onClick={signinHanfler}>Sign In</button>
+            <button onClick={signinHandler}>Sign In</button>
           </form>
         </div>
         <div className="overlay-container">

@@ -10,6 +10,7 @@ import { store } from './store';
 import TypingSpeed from './screens/game/TypingSpeed';
 import CandyCrush from './screens/game/CandyCrush';
 import Sudoku from './screens/game/Sudoku';
+import Sign from './screens/authenticate/Sign';
 
 function App() {
   const { state, disPatch } = useContext(store);
@@ -41,18 +42,23 @@ function App() {
               </div>{' '}
             </div>{' '}
             <div>
-              <Link className="profile-pic" to={`/profile/`}>
-                <div className="profile-name"> Kishore N </div>{' '}
-                <i className="fa-solid fa-circle-user"> </i>{' '}
-              </Link>{' '}
+              {user == null ? (
+                <Link to={'/sign'}>
+                  <div className="login">LOGIN</div>
+                </Link>
+              ) : (
+                <Link className="profile-pic" to={`/profile/`}>
+                  <div className="profile-name"> {user.name} </div>{' '}
+                  <i className="fa-solid fa-circle-user"> </i>{' '}
+                </Link>
+              )}
             </div>{' '}
           </nav>{' '}
         </header>
         <main>
           <Routes>
             <Route path="/" element={<Home />} />{' '}
-            {/* <Route path="/signin" element={<Login />} />
-                                                <Route path="/register" element={<Signup />} /> */}{' '}
+            <Route path="/sign" element={<Sign />} />
             <Route path="/games" element={<Game />} />{' '}
             <Route path="/profile/:profileid" element={<Profile />} />{' '}
             <Route path="/leaderboard" element={<Leaderboard />} />{' '}
