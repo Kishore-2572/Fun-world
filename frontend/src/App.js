@@ -9,6 +9,7 @@ import { useContext } from 'react';
 import { store } from './store';
 import TypingSpeed from './screens/game/TypingSpeed';
 import CandyCrush from './screens/game/CandyCrush';
+import Sudoku from './screens/game/Sudoku';
 
 function App() {
   const { state, disPatch } = useContext(store);
@@ -54,12 +55,13 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />{' '}
             {/* <Route path="/signin" element={<Login />} />
-                        <Route path="/register" element={<Signup />} /> */}{' '}
+                                                <Route path="/register" element={<Signup />} /> */}{' '}
             <Route path="/games" element={<Game />} />{' '}
             <Route path="/profile/:profileid" element={<Profile />} />{' '}
             <Route path="/leaderboard" element={<Leaderboard />} />{' '}
             <Route path="/TypingSpeed" element={<TypingSpeed />} />{' '}
             <Route path="/CandyCrush" element={<CandyCrush />} />{' '}
+            <Route path="/Sudoku" element={<Sudoku />} />{' '}
           </Routes>{' '}
         </main>{' '}
       </div>{' '}
