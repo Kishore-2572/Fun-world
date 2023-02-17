@@ -36,11 +36,11 @@ userRouter.post('/signup', async (req, res) => {
   }
 });
 
-userRouter.post('/login', async (req, res) => {
+userRouter.post('/signin', async (req, res) => {
   try {
-    const name = req.body.name;
+    const email = req.body.email;
     const password = req.body.password;
-    const user = await User.findOne({ name: name });
+    const user = await User.findOne({ email: email });
     if (user) {
       if (user.password == password) {
         res.status(200).send({ user: user });

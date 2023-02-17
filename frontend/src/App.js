@@ -5,7 +5,7 @@ import Game from '../src/screens/game/Game';
 import Profile from '../src/screens/profile/Profile';
 import Leaderboard from '../src/screens/leaderboard/Leaderboard';
 import Logo from '../src/assets/logo.png';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { store } from './store';
 import TypingSpeed from './screens/game/TypingSpeed';
 import CandyCrush from './screens/game/CandyCrush';
@@ -48,7 +48,7 @@ function App() {
                 </Link>
               ) : (
                 <Link className="profile-pic" to={`/profile/`}>
-                  <div className="profile-name"> {user.name} </div>{' '}
+                  <div className="profile-name"> {user.user.name} </div>{' '}
                   <i className="fa-solid fa-circle-user"> </i>{' '}
                 </Link>
               )}
