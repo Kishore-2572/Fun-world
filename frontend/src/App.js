@@ -18,39 +18,36 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        {' '}
-        {user && (
-          <header>
-            <nav className="navbar">
-              <div className="nav-brand">
-                <Link to="/">
-                  {' '}
-                  <img src={Logo} alt="logo" />
-                </Link>{' '}
+        <header>
+          <nav className="navbar">
+            <div className="nav-brand">
+              <Link to="/">
+                {' '}
+                <img src={Logo} alt="logo" />
+              </Link>{' '}
+            </div>{' '}
+            <div className="nav-items">
+              <div className="nav-item">
+                <Link to="/"> Home </Link>{' '}
               </div>{' '}
-              <div className="nav-items">
-                <div className="nav-item">
-                  <Link to="/"> Home </Link>{' '}
-                </div>{' '}
-                <div className="nav-item">
-                  <Link to="/games"> Games </Link>{' '}
-                </div>{' '}
-                <div className="nav-item">
-                  <Link to="/leaderboard"> Leaderboard </Link>{' '}
-                </div>{' '}
-                <div className="nav-item">
-                  <a href="#help"> Help </a>{' '}
-                </div>{' '}
+              <div className="nav-item">
+                <Link to="/games"> Games </Link>{' '}
               </div>{' '}
-              <div>
-                <Link className="profile-pic" to={`/profile/${user._id}`}>
-                  <div className="profile-name"> Kishore N </div>{' '}
-                  <i className="fa-solid fa-circle-user"> </i>{' '}
-                </Link>{' '}
+              <div className="nav-item">
+                <Link to="/leaderboard"> Leaderboard </Link>{' '}
               </div>{' '}
-            </nav>{' '}
-          </header>
-        )}{' '}
+              <div className="nav-item">
+                <a href="#help"> Help </a>{' '}
+              </div>{' '}
+            </div>{' '}
+            <div>
+              <Link className="profile-pic" to={`/profile/`}>
+                <div className="profile-name"> Kishore N </div>{' '}
+                <i className="fa-solid fa-circle-user"> </i>{' '}
+              </Link>{' '}
+            </div>{' '}
+          </nav>{' '}
+        </header>
         <main>
           <Routes>
             <Route path="/" element={<Home />} />{' '}
@@ -59,9 +56,9 @@ function App() {
             <Route path="/games" element={<Game />} />{' '}
             <Route path="/profile/:profileid" element={<Profile />} />{' '}
             <Route path="/leaderboard" element={<Leaderboard />} />{' '}
-            <Route path="/TypingSpeed" element={<TypingSpeed />} />{' '}
-            <Route path="/CandyCrush" element={<CandyCrush />} />{' '}
-            <Route path="/Sudoku" element={<Sudoku />} />{' '}
+            <Route path="/game/typo" element={<TypingSpeed />} />{' '}
+            <Route path="/game/candycrush" element={<CandyCrush />} />{' '}
+            <Route path="/game/sudoku" element={<Sudoku />} />{' '}
           </Routes>{' '}
         </main>{' '}
       </div>{' '}

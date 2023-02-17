@@ -61,7 +61,7 @@ const Game = () => {
             </div>
           </div>
         </Link>
-        <Link to="/game/typo">
+        <Link to="/game/sudoku">
           <div className="game-card">
             <div className="gc-left">
               <img
@@ -72,37 +72,7 @@ const Game = () => {
             </div>
             <div className="gc-right">
               <h1>Sudoku</h1>
-              <p className="description">
-                A challenging game for your IQ{' '}
-              </p>
-              <div className="gc-gamecount">
-                <h3>Games</h3> <p>10</p>{' '}
-              </div>
-              <div className="gc-highest-core">
-                {' '}
-                <h3>High Score</h3> <p>500</p>{' '}
-              </div>
-              <div className="gc-Average">
-                {' '}
-                <h3>Average</h3> <p>45.8</p>{' '}
-              </div>
-            </div>
-          </div>
-        </Link>
-        <Link to="/game/typo">
-          <div className="game-card">
-            <div className="gc-left">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8iRZ4oIbQwXol4xfDTsKGXwD_CRWJkM6V7vekNwpJXIP15VJQiS5JTHb_ZoeJkFa87QE&usqp=CAU"
-                alt=""
-                srcset=""
-              />
-            </div>
-            <div className="gc-right">
-              <h1>TYPING GAME</h1>
-              <p className="description">
-                It is a Game which test your typing speed{' '}
-              </p>
+              <p className="description">A challenging game for your IQ </p>
               <div className="gc-gamecount">
                 <h3>Games</h3> <p>10</p>{' '}
               </div>

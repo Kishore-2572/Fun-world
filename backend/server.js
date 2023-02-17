@@ -9,9 +9,7 @@ const app = express();
 mongo
   .connect(process.env.MONGO_URL)
   .then(() => {
-    app.listen(process.env.PORT, () =>
-      console.log(`Funworld listening on port ${process.env.PORT}!`)
-    );
+    app.listen(5000, () => console.log(`Funworld listening on port 5000!`));
   })
   .catch((e) => console.log(e));
 
