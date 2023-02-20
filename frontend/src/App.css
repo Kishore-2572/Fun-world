@@ -16,6 +16,7 @@
 .nav-brand {
   width: 10%;
   height: 10vh;
+  margin-top: -2%;
   text-align: center;
 }
 
@@ -27,7 +28,6 @@
 
 .nav-items {
   display: flex;
-
   align-items: center;
   gap: 2rem;
 }

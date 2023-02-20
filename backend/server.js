@@ -2,6 +2,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const userRouter = require('./routes/User');
 const mongo = require('mongoose');
+const candycrushRouter = require('./routes/candycrushRouter');
+const typingRouter = require('./routes/typingspeedRouter');
 
 dotenv.config();
 const app = express();
@@ -16,3 +18,5 @@ mongo
 app.use(express.json());
 
 app.use('/user', userRouter);
+app.use('/candycrush', candycrushRouter);
+app.use('/typingspeed', typingRouter);

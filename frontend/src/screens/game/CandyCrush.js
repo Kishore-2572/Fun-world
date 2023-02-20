@@ -1,5 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import './CandyCrush.css';
+import Axios from 'axios';
 import blueCandy from '../../assets/blue-candy.png';
 import greenCandy from '../../assets/green-candy.png';
 import orangeCandy from '../../assets/orange-candy.png';
@@ -8,6 +9,7 @@ import redCandy from '../../assets/red-candy.png';
 import yellowCandy from '../../assets/yellow-candy.png';
 import blank from '../../assets/blank.png';
 import ScoreBoard from './ScoreBoard';
+import { store } from '../../store.js';
 
 const width = 8;
 const candyColors = [
@@ -24,9 +26,12 @@ export default function CandyCrush() {
   const [squareDrag, setSquareDrag] = useState(null);
   const [squareReplace, setSquareReplace] = useState(null);
   const [score, setScore] = useState(0);
-  const [timer, setTimer] = useState(120);
+  const [timer, setTimer] = useState(10);
   const [isGameOver, setIsGameOver] = useState(false);
   const [start, setStart] = useState(false);
+
+  const { state, dispatch } = useContext(store);
+  const { user } = state;
 
   const checkColumnThree = () => {
     for (let i = 0; i <= 47; i++) {
@@ -171,11 +176,25 @@ export default function CandyCrush() {
   };
 
   useEffect(() => {
+    const updateScore = async () => {
+      try {
+        const { data } = await Axios.put(
+          `/candycrush/addscore/${user.user._id}`,
+          {
+            score,
+          }
+        );
+        dispatch({ type: 'CANDY_CRUSH', payload: data });
+      } catch (err) {
+        alert(err);
+      }
+    };
     if (start) {
       const action = setInterval(() => {
         setTimer(timer - 1);
       }, 1000);
       if (timer <= 0) {
+        updateScore();
         setIsGameOver(true);
         clearInterval(action);
         return;
@@ -210,7 +229,6 @@ export default function CandyCrush() {
     <div className="header">
       <div className="candy-crush-home-container">
         <ScoreBoard scores={score} times={timer} />
-        {isGameOver && console.log('Game Over')}
         <section className="candy-crush-container">
           <div className="candy-board-container">
             {currentColorArrangement.map((candyColor, index) => (

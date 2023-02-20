@@ -21,13 +21,9 @@ userRouter.post('/signup', async (req, res) => {
         email: email,
       });
       const user = await newUser.save();
+      const users = await User.findOne({ email: email });
       res.status(200).send({
-        user: {
-          name: user.name,
-          password: user.password,
-          email: user.email,
-          token: generateToken(user),
-        },
+        user: users,
         message: 'Account created successfully',
       });
     }
@@ -65,71 +61,6 @@ userRouter.get('/', async (req, res) => {
       candycrush: candycrushgameDetail,
       sudoku: sudokugameDetail,
     });
-  } catch (e) {
-    res.status(500).send('Internal Server Error');
-  }
-});
-
-userRouter.post('/', async (req, res) => {
-  try {
-    const userId = req.body.userId;
-    const game = req.body.gameId;
-    const score = req.body.score;
-    if (game == 1) {
-      var typegameDetail = await Typing.findOne({ userId: userId });
-      if (typegameDetail) {
-        typegameDetail.gamecount = typegameDetail.gamecount + 1;
-        typegameDetail.totalscore = typegameDetail.totalscore + score;
-        if (score > typegameDetail.highscore) {
-          typegameDetail.highscore = score;
-        }
-      } else {
-        typegameDetail = new Typing({
-          userId: userId,
-          gamecount: 1,
-          totalscore: score,
-          highscore: score,
-        });
-      }
-      await typegameDetail.save();
-    } else if (game == 2) {
-      var candycrushgameDetail = await Candycrush.findOne({ userId: userId });
-      if (candycrushgameDetail) {
-        candycrushgameDetail.gamecount = candycrushgameDetail.gamecount + 1;
-        candycrushgameDetail.totalscore =
-          candycrushgameDetail.totalscore + score;
-        if (score > candycrushgameDetail.highscore) {
-          candycrushgameDetail.highscore = score;
-        }
-      } else {
-        candycrushgameDetail = new Candycrush({
-          userId: userId,
-          gamecount: 1,
-          totalscore: score,
-          highscore: score,
-        });
-      }
-      await candycrushgameDetail.save();
-    } else {
-      const sudokugameDetail = await Sudoku.findOne({ userId: userId });
-      if (sudokugameDetail) {
-        sudokugameDetail.gamecount = sudokugameDetail.gamecount + 1;
-        sudokugameDetail.totalscore = sudokugameDetail.totalscore + score;
-        if (score > sudokugameDetail.highscore) {
-          sudokugameDetail.highscore = score;
-        }
-      } else {
-        sudokugameDetail = new Sudoku({
-          userId: userId,
-          gamecount: 1,
-          totalscore: score,
-          highscore: score,
-        });
-      }
-      await sudokugameDetail.save();
-    }
-
-    res.status(200).send('Updated successfully');
   } catch (e) {
     res.status(500).send('Internal Server Error');
   }

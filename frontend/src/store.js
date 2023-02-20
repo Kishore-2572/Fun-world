@@ -6,6 +6,12 @@ const initialState = {
   user: localStorage.getItem('user')
     ? JSON.parse(localStorage.getItem('user'))
     : null,
+  candyCrush: localStorage.getItem('candy_crush')
+    ? JSON.parse(localStorage.getItem('candy_crush'))
+    : null,
+  typingSpeed: localStorage.getItem('typing_speed')
+    ? JSON.parse(localStorage.getItem('typing_speed'))
+    : null,
 };
 
 function reducer(state, action) {
@@ -16,6 +22,13 @@ function reducer(state, action) {
 
     case 'SIGN_OUT':
       return { ...state, user: null };
+
+    case 'CANDY_CRUSH':
+      localStorage.setItem('candy_crush', JSON.stringify(action.payload));
+      return { ...state, candyCrush: action.payload };
+    case 'TYPING_SPEED':
+      localStorage.setItem('typing_speed', JSON.stringify(action.payload));
+      return { ...state, typingSpeed: action.payload };
 
     default:
       return state;

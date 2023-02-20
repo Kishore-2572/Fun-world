@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './TypingSpeed.css';
+import Axios from 'axios';
 import randomSentence from 'random-sentence';
+import { store } from '../../store';
 
 function TypingSpeed() {
   let [input, setinput] = useState('');
@@ -10,6 +12,9 @@ function TypingSpeed() {
   const [correct, setcorrect] = useState(0);
   const [incrt, setincrt] = useState(0);
   const [res, setres] = useState(0);
+
+  const { state, dispatch } = useContext(store);
+  const { user } = state;
 
   const handleKeyPress = (event) => {
     let char = sentance.charAt(0);
@@ -40,6 +45,19 @@ function TypingSpeed() {
 
   useEffect(() => {
     setsantance(sentance.replace(/[^a-z\s]/gi, ''));
+    const updateScore = async (score) => {
+      try {
+        const { data } = await Axios.put(
+          `/typingspeed/addscore/${user.user._id}`,
+          {
+            score,
+          }
+        );
+        dispatch({ type: 'TYPING_SPEED', payload: data });
+      } catch (err) {
+        alert(err);
+      }
+    };
     if (start) {
       setTimeout(() => {
         if (time >= 0) setime(time - 1);
@@ -52,8 +70,8 @@ function TypingSpeed() {
         scr += (correct - incrt) / 10;
         scr = Math.round(scr * 100) / 100;
         scr = Math.max(scr, 0);
-        console.log('score ' + scr);
 
+        updateScore(scr);
         setres(scr);
 
         // setTimeout(() => {}, 2000);
