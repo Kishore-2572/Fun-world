@@ -8,10 +8,16 @@ const Profile = () => {
   const signoutHandler = () => {
     disPatch({ type: 'SIGN_OUT' });
     localStorage.removeItem('user');
-    window.location.href = '/signin';
+    localStorage.removeItem('candy_crush');
+    localStorage.removeItem('typing_speed');
+    localStorage.removeItem('leaderboard');
   };
 
-  return <div className="profile"></div>;
+  return (
+    <div className="profile">
+      <button onClick={signoutHandler}>Sign-Out</button>
+    </div>
+  );
 };
 
 export default Profile;

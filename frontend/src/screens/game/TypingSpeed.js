@@ -47,10 +47,12 @@ function TypingSpeed() {
     setsantance(sentance.replace(/[^a-z\s]/gi, ''));
     const updateScore = async (score) => {
       try {
+        const name = user.user.name;
         const { data } = await Axios.put(
           `/typingspeed/addscore/${user.user._id}`,
           {
             score,
+            name,
           }
         );
         dispatch({ type: 'TYPING_SPEED', payload: data });

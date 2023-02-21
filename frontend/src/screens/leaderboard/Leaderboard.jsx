@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Leaderboardrow from '../../componants/leaderboardrow/Leaderboardrow';
+import { store } from '../../store';
+import Axios from 'axios';
 import './leaderboard.css';
 
 const Leaderboard = () => {
@@ -21,46 +23,47 @@ const Leaderboard = () => {
     { Name: 'Kishore', Games: '12', Score: '3010', Average: '45.7' },
     { Name: 'Kishore', Games: '12', Score: '3010', Average: '45.7' },
     { Name: 'Kishore', Games: '12', Score: '3010', Average: '45.7' },
-    
   ];
+
+  const { state, dispatch } = useContext(store);
+  const { user, Leaderboard } = state;
+
+  useEffect(() => {
+    const updateScore = async () => {
+      try {
+        const { data } = await Axios.get(`/user`);
+        console.log(data);
+        dispatch({ type: 'OVERALL_LEADERBOARD', payload: data });
+      } catch (err) {
+        alert(err);
+      }
+    };
+    updateScore();
+  }, []);
 
   return (
     <div className="leaderboard">
       <div className="leaderboard-header">
         <div
-          style={active === '1' ? style : null}
-          onClick={() => setActive('1')}
-          className="lbh-item"
-        >
-          Overall
-        </div>
-        <div
           style={active === '2' ? style : null}
           onClick={() => setActive('2')}
           className="lbh-item"
         >
-          Game 1
+          Candy Crush
         </div>
         <div
           style={active === '3' ? style : null}
           onClick={() => setActive('3')}
           className="lbh-item"
         >
-          Game 2
+          Typing Speed
         </div>
         <div
           style={active === '4' ? style : null}
           onClick={() => setActive('4')}
           className="lbh-item"
         >
-          Game 3
-        </div>
-        <div
-          style={active === '5' ? style : null}
-          onClick={() => setActive('5')}
-          className="lbh-item"
-        >
-          Game 4
+          Sudoku
         </div>
       </div>
 
@@ -72,13 +75,21 @@ const Leaderboard = () => {
               <th>Name</th>
               <th>Games</th>
               <th>Score</th>
+              <th>High Score</th>
               <th>Average</th>
             </tr>
           </thead>
           <tbody>
-            {list.map((e, idx) => {
-              return <Leaderboardrow key={idx} data={e} rank={idx + 1} />;
-            })}
+            {Leaderboard &&
+              active === '2' &&
+              Leaderboard.candycrush.map((e, idx) => {
+                return <Leaderboardrow key={idx} data={e} rank={idx + 1} />;
+              })}
+            {Leaderboard &&
+              active === '3' &&
+              Leaderboard.typing.map((e, idx) => {
+                return <Leaderboardrow key={idx} data={e} rank={idx + 1} />;
+              })}
           </tbody>
         </table>
       </div>

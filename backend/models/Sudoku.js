@@ -7,6 +7,10 @@ const Sudokuschema = mongoose.Schema(
       ref: 'User',
       required: true,
     },
+    name: {
+      type: String,
+      required: true,
+    },
     gamecount: {
       type: Number,
       required: true,

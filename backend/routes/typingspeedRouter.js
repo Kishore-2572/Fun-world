@@ -12,6 +12,7 @@ typingRouter.put('/addscore/:id', async (req, res) => {
       const updateUser = await user.save();
       if (updateUser) {
         res.send({
+          name: user.name,
           userId: user.userId,
           gamecount: user.gamecount,
           totalscore: user.totalscore,
@@ -21,6 +22,7 @@ typingRouter.put('/addscore/:id', async (req, res) => {
       }
     } else {
       const user = new Typingspeed({
+        name: req.body.name,
         userId: req.params.id,
         gamecount: 1,
         totalscore: score,
@@ -28,6 +30,7 @@ typingRouter.put('/addscore/:id', async (req, res) => {
       });
       await user.save();
       res.send({
+        name: user.name,
         userId: user.userId,
         gamecount: user.gamecount,
         totalscore: user.totalscore,

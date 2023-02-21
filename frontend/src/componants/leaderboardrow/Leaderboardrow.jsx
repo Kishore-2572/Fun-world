@@ -5,10 +5,11 @@ const Leaderboardrow = ({ data, rank }) => {
   return (
     <tr className="leaderboardrow">
       <td>{rank}</td>
-      <td>{data.Name}</td>
-      <td>{data.Games}</td>
-      <td>{data.Score}</td>
-      <td>{data.Average}</td>
+      <td>{data.name}</td>
+      <td>{data.gamecount}</td>
+      <td>{data.totalscore}</td>
+      <td>{data.highscore}</td>
+      <td>{(data.totalscore / data.gamecount).toFixed(2)}</td>
     </tr>
   );
 };

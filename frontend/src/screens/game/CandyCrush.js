@@ -178,10 +178,12 @@ export default function CandyCrush() {
   useEffect(() => {
     const updateScore = async () => {
       try {
+        const name = user.user.name;
         const { data } = await Axios.put(
           `/candycrush/addscore/${user.user._id}`,
           {
             score,
+            name,
           }
         );
         dispatch({ type: 'CANDY_CRUSH', payload: data });

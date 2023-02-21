@@ -12,6 +12,9 @@ const initialState = {
   typingSpeed: localStorage.getItem('typing_speed')
     ? JSON.parse(localStorage.getItem('typing_speed'))
     : null,
+  Leaderboard: localStorage.getItem('leaderboard')
+    ? JSON.parse(localStorage.getItem('leaderboard'))
+    : null,
 };
 
 function reducer(state, action) {
@@ -21,7 +24,13 @@ function reducer(state, action) {
       return { ...state, user: action.payload };
 
     case 'SIGN_OUT':
-      return { ...state, user: null };
+      return {
+        ...state,
+        user: null,
+        candyCrush: null,
+        typingSpeed: null,
+        Leaderboard: null,
+      };
 
     case 'CANDY_CRUSH':
       localStorage.setItem('candy_crush', JSON.stringify(action.payload));
@@ -29,6 +38,9 @@ function reducer(state, action) {
     case 'TYPING_SPEED':
       localStorage.setItem('typing_speed', JSON.stringify(action.payload));
       return { ...state, typingSpeed: action.payload };
+    case 'OVERALL_LEADERBOARD':
+      localStorage.setItem('leaderboard', JSON.stringify(action.payload));
+      return { ...state, Leaderboard: action.payload };
 
     default:
       return state;
